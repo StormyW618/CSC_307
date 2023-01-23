@@ -8,18 +8,18 @@ function MyApp() {
 
 
 function removeOneCharacter (index) {
-  var user_id = characters[index].id;
-  makeDeleteCall(user_id).then( result => {
-    if (result && result.status === 204)
+  const delete_id = characters[index].id;
+  const response = axios.delete('http://localhost:5000/users' + delete_id);
+    if (response && response.status === 204)
       //  person = result.data;
-      //  setCharacters([...characters, person] )
+      //  setCharacters([...characters, person] );
        console.log("Sucessfully deleted");
-    });
+    
  
-  // const updated = characters.filter((character, i) => {
-  //     return i !== index
-  //   });
-  //   setCharacters(updated);
+  const updated = characters.filter((character, i) => {
+      return i !== index
+    });
+    setCharacters(updated);
   }
 
   useEffect(() => {
@@ -40,16 +40,6 @@ function removeOneCharacter (index) {
   }
 }
 
-async function makeDeleteCall(user_id){
-  try {
-     const response = await axios.delete('http://localhost:5000/users' + user_id);
-     return response;
-  }
-  catch (error) {
-     console.log(error);
-     return false;
-  }
-}
 
 
 
