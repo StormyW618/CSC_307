@@ -9,7 +9,7 @@ function MyApp() {
 
 function removeOneCharacter (index) {
   const delete_id = characters[index].id;
-  const response = axios.delete('http://localhost:5000/users' + delete_id);
+  const response = axios.delete('http://localhost:5000/users/' + delete_id);
     if (response && response.status === 204)
       //  person = result.data;
       //  setCharacters([...characters, person] );
